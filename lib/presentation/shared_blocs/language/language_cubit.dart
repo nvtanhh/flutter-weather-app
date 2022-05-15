@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
 
-import '../../../common/utils/utils.index.dart';
 import '../../../domain/usecases/langugae/get_default_locale.dart';
 import '../../../domain/usecases/langugae/get_stored_language_code.dart';
 import '../../../domain/usecases/langugae/get_supported_locales.dart';
 import '../../../domain/usecases/langugae/store_language_code.dart';
 import '../../../injector/injection.dart';
 
-@singleton
+@lazySingleton
 class LanguageCubit extends Cubit<Locale?> {
   final GetDefaultLocale _getDefaultLocale;
   final GetSupportedLocales _getSupportedLocales;
@@ -71,7 +71,7 @@ class LanguageCubit extends Cubit<Locale?> {
       );
       emit(supportedMatchedLocale);
     } else if (state == null) {
-      locator<Logger>().logInfo(
+      locator<Logger>().i(
         'Locale ${deviceLocale.languageCode} not supported, defaulting to en',
       );
       emit(defaultLocale);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../common/utils/utils.index.dart';
-import '../../domain/entities/theme_entity.dart';
+import '../../domain/entities/theme_color_entity.dart';
 
 class ThemeColorModel extends ThemeColorEntity {
   ThemeColorModel({

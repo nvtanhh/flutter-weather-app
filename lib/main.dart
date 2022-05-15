@@ -1,49 +1,27 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 
-import 'common/utils/logger.dart';
+import 'bloc_observer.dart';
 import 'injector/injection.dart';
 import 'presentation/app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb
+        ? HydratedStorage.webStorageDirectory
+        : await getTemporaryDirectory(),
+  );
   await configureDependencies();
-  BlocOverrides.runZoned(
-    () {
+  HydratedBlocOverrides.runZoned(
+    () async {
       runApp(TodoApp());
     },
-    blocObserver: AppBlocObserver(),
+    storage: storage,
+    blocObserver: locator<AppBlocObserver>(),
   );
-}
-
-class AppBlocObserver extends BlocObserver {
-  final _logger = locator<Logger>();
-
-  @override
-  void onChange(BlocBase bloc, Change change) {
-    if (bloc is Cubit) {
-      _logger.logInfo('CUBIT CHANGE: $bloc $change');
-      super.onChange(bloc, change);
-    }
-  }
-
-  @override
-  void onEvent(Bloc bloc, Object? event) {
-    _logger.logInfo('BLOC EVENT: ${bloc.runtimeType} $event');
-    super.onEvent(bloc, event);
-  }
-
-  @override
-  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-    _logger.logError('BLOC ERROR: ${bloc.runtimeType} $error');
-    super.onError(bloc, error, stackTrace);
-  }
-
-  @override
-  void onTransition(Bloc bloc, Transition transition) {
-    _logger.logInfo('BLOC TRANSITION: ${bloc.runtimeType} $transition');
-    super.onTransition(bloc, transition);
-  }
 }

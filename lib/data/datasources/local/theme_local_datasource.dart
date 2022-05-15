@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../common/constants/constants.index.dart';
 import '../../../common/utils/utils.index.dart';
 import '../../../domain/entities/enums/theme_dark_option.dart';
-import '../../../domain/entities/theme_entity.dart';
+import '../../../domain/entities/theme_color_entity.dart';
 import '../../../injector/injection.dart';
 import '../../models/theme_model.dart';
 
@@ -56,38 +56,38 @@ class ThemeLocalDataSource {
     _preferencesStorage.setString(StorageConstants.font, font);
   }
 
-  ThemeColorModel? getStoredTheme() {
-    try {
-      final data = _preferencesStorage.getString(StorageConstants.themeColor);
-      return data != null
-          ? ThemeColorModel.fromJson(jsonDecode(data) as Map<String, dynamic>)
-          : null;
-    } catch (e) {
-      locator<Logger>().logError(e.toString());
-      _preferencesStorage.remove(StorageConstants.themeColor);
-      return null;
-    }
-  }
+  // ThemeColorModel? getStoredTheme() {
+  //   try {
+  //     final data = _preferencesStorage.getString(StorageConstants.themeColor);
+  //     return data != null
+  //         ? ThemeColorModel.fromJson(jsonDecode(data) as Map<String, dynamic>)
+  //         : null;
+  //   } catch (e) {
+  //     locator<Logger>().logError(e.toString());
+  //     _preferencesStorage.remove(StorageConstants.themeColor);
+  //     return null;
+  //   }
+  // }
 
-  void storeThemeColor(ThemeColorEntity theme) {
-    _preferencesStorage.setString(
-      StorageConstants.themeColor,
-      jsonEncode((theme as ThemeColorModel).toJson()),
-    );
-  }
+  // void storeThemeColor(ThemeColorEntity theme) {
+  //   _preferencesStorage.setString(
+  //     StorageConstants.themeColor,
+  //     jsonEncode((theme as ThemeColorModel).toJson()),
+  //   );
+  // }
 
-  Future<DarkModeOption?> getStoredDarkModeOption() async {
-    try {
-      final data =
-          _preferencesStorage.getString(StorageConstants.darkModeOption);
-      if (data == null) return null;
-      return DarkModeOption.values.firstWhere((item) => item.name == data);
-    } catch (e) {
-      locator<Logger>().logError(e.toString());
-      _preferencesStorage.remove(StorageConstants.darkModeOption);
-      return null;
-    }
-  }
+  // Future<DarkModeOption?> getStoredDarkModeOption() async {
+  //   try {
+  //     final data =
+  //         _preferencesStorage.getString(StorageConstants.darkModeOption);
+  //     if (data == null) return null;
+  //     return DarkModeOption.values.firstWhere((item) => item.name == data);
+  //   } catch (e) {
+  //     locator<Logger>().logError(e.toString());
+  //     _preferencesStorage.remove(StorageConstants.darkModeOption);
+  //     return null;
+  //   }
+  // }
 
   void storeDarkModeOption(DarkModeOption darkModeOption) {
     _preferencesStorage.setString(

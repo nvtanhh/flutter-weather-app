@@ -10,4 +10,9 @@ class ThemeColorEntity {
     required this.primary,
     required this.secondary,
   });
+
+  @override
+  String toString() {
+    return name;
+  }
 }

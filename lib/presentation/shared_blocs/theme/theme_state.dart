@@ -5,7 +5,7 @@ class ThemeState extends Equatable {
   final ThemeData? lightTheme;
   final ThemeData? darkTheme;
   final String? font;
-  final DarkModeOption? darkOption;
+  final DarkModeOption darkModeOption;
 
   final List<ThemeColorEntity>? supportedThemes;
   final List<String>? supportedFonts;
@@ -15,7 +15,7 @@ class ThemeState extends Equatable {
     this.lightTheme,
     this.darkTheme,
     this.font,
-    this.darkOption,
+    this.darkModeOption = DarkModeOption.dynamic,
     this.supportedThemes,
     this.supportedFonts,
   });
@@ -25,7 +25,7 @@ class ThemeState extends Equatable {
     ThemeData? lightTheme,
     ThemeData? darkTheme,
     String? font,
-    DarkModeOption? darkOption,
+    DarkModeOption? darkModeOption,
     List<ThemeColorEntity>? supportedThemes,
     List<String>? supportedFonts,
   }) {
@@ -34,7 +34,7 @@ class ThemeState extends Equatable {
       lightTheme: lightTheme ?? this.lightTheme,
       darkTheme: darkTheme ?? this.darkTheme,
       font: font ?? this.font,
-      darkOption: darkOption ?? this.darkOption,
+      darkModeOption: darkModeOption ?? this.darkModeOption,
       supportedThemes: supportedThemes ?? this.supportedThemes,
       supportedFonts: supportedFonts ?? this.supportedFonts,
     );
@@ -46,7 +46,12 @@ class ThemeState extends Equatable {
         lightTheme,
         darkTheme,
         font,
-        darkOption,
+        darkModeOption,
         supportedThemes,
       ];
+
+  @override
+  String toString() {
+    return 'ThemeState{theme: $theme,  font: $font, darkOption: $darkModeOption';
+  }
 }

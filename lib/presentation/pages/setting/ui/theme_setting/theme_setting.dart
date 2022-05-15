@@ -5,7 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../../common/extensions/extensions.index.dart';
 import '../../../../../common/theme/theme.index.dart';
-import '../../../../../domain/entities/theme_entity.dart';
+import '../../../../../domain/entities/theme_color_entity.dart';
 import '../../../../../injector/injection.dart';
 import '../../../../shared_blocs/shared_bloc_index.dart';
 

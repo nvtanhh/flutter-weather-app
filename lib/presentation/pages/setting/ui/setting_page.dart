@@ -24,7 +24,7 @@ class SettingPage extends StatelessWidget {
   }
 
   Future<void> _showDarkModeSetting(BuildContext context) async {
-    DarkModeOption darkOption = locator<ThemeCubit>().state.darkOption!;
+    DarkModeOption darkOption = locator<ThemeCubit>().state.darkModeOption;
     showDialog<bool>(
       context: context,
       barrierDismissible: true,
@@ -165,7 +165,7 @@ class SettingPage extends StatelessWidget {
               trailing: Row(
                 children: <Widget>[
                   ThemedText(
-                    state.darkOption!.toTranslationString(context),
+                    state.darkModeOption.toTranslationString(context),
                     type: ThemedTextType.caption,
                   ),
                   AppIcon(

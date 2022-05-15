@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 
-import '../../entities/theme_entity.dart';
+import '../../entities/theme_color_entity.dart';
 import '../../repositories/theme_repository.dart';
 
 @injectable
