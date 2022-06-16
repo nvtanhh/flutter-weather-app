@@ -1,6 +1,6 @@
 # Flutter Weather Project
 
-A boilerplate project created in flutter using Bloc x TDD Clearn Architecture
+A boilerplate project created in flutter using Bloc x Repository pattern
 
 ## Getting Started
 
